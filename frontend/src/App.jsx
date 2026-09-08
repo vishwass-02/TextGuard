@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Shield, Mail, MessageSquareWarning, History, Send, AlertTriangle, CheckCircle2, AlertCircle, ChevronRight, Activity, LogOut } from 'lucide-react';
 import LandingPage from './LandingPage';
 
-const API_BASE_URL = 'http://localhost:8000';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
 
 function App() {
   const [showApp, setShowApp] = useState(false);

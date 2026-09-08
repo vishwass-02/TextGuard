@@ -1,4 +1,5 @@
 from dotenv import load_dotenv
+import os
 load_dotenv()
 
 from fastapi import FastAPI, Depends, HTTPException
@@ -13,10 +14,16 @@ import ml_models
 app = FastAPI(title="TextGuard API")
 
 # Configure CORS
+origins = [
+    "http://localhost:5173",
+    "http://localhost:3000",
+    os.getenv("FRONTEND_URL", "*")
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"], # For development
-    allow_credentials=False,
+    allow_origins=origins,
+    allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
